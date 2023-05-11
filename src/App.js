@@ -1,25 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import {useRef,useState} from 'react';
 
-function App() {
+export default function App() {
+  const inputRef = useRef(null);
+  const resultRef = useRef(null);
+  const [result, setResult] = useState(0);
+
+  const plus=(e)=>{
+    e.preventDefault();
+    setResult((result) => result + Number(inputRef.current.value));
+  };
+  const minus=(e)=>{
+    e.preventDefault();
+    setResult((result) => result - Number(inputRef.current.value));
+  };
+  const multiplication=(e)=>{
+    e.preventDefault();
+    setResult((result) => result * Number(inputRef.current.value));
+  };
+  const divide=(e)=>{
+    e.preventDefault();
+    setResult((result) => result / Number(inputRef.current.value));
+  };
+  const resetInput=(e)=>{
+    e.preventDefault();
+    inputRef.current.value = 0;
+  };
+  const resetResult=(e)=>{
+    e.preventDefault();
+    setResult((prevval) => prevval * 0);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div>
+      <h1>my calculator</h1>
+      </div>
+      <form>
+        <h1 ref={resultRef}>{result}</h1>
+        <input patterns='[0-9]'type='number' placeholder ="put yor number here" ref={inputRef}/>
+        <button onClick={plus}>plus</button>
+        <button onClick={minus}>minus </button>
+        <button onClick={divide}>divide </button>
+        <button onClick={multiplication}>multiplication </button>
+        <button onClick={resetInput}>reset </button>
+        <button onClick={resetResult}>resetResult</button>
+      </form>
     </div>
-  );
-}
-
-export default App;
+    );
+  }

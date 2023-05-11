@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-color: blue;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+
 }
 
 .App-logo {
